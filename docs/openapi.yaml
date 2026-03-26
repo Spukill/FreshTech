@@ -1,0 +1,447 @@
+openapi: 3.1.0
+
+info:
+  version: '1.0'
+  title: 'FreshTech Web API'
+  description: 'Web Resources Specification (A7) for FreshTech'
+
+servers:
+  - url: https://lbaw2526.lbaw.fe.up.pt
+    description: Production server
+
+tags:
+  - name: 'M01: Authentication and User Profile'
+  - name: 'M02: Stock Management'
+  - name: 'M03: Reviews and Wishlist'
+  - name: 'M04: Shopping Cart and Checkout'
+  - name: 'M05: Administration and Static pages'
+
+components:
+  parameters:
+    productId:
+      name: product
+      in: path
+      required: true
+      schema:
+        type: integer
+    orderId:
+      name: order
+      in: path
+      required: true
+      schema:
+        type: integer
+    promoId:
+      name: promo
+      in: path
+      required: true
+      schema:
+        type: integer
+    reviewId:
+      name: review
+      in: path
+      required: true
+      schema:
+        type: integer
+    notificationId:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+
+paths:
+  ##### M01 - Authentication and User Profile #####
+  /login:
+    get:
+      operationId: R101
+      summary: 'R101: Login Form'
+      tags: ['M01: Authentication and User Profile']
+      responses: { '200': { description: 'OK' } }
+    post:
+      operationId: R102
+      summary: 'R102: Authenticate'
+      tags: ['M01: Authentication and User Profile']
+      responses: { '302': { description: 'Redirect' } }
+
+  /register:
+    get:
+      operationId: R103
+      summary: 'R103: Register Form'
+      tags: ['M01: Authentication and User Profile']
+      responses: { '200': { description: 'OK' } }
+    post:
+      operationId: R104
+      summary: 'R104: Process Registration'
+      tags: ['M01: Authentication and User Profile']
+      responses: { '302': { description: 'Redirect' } }
+
+  /logout:
+    get:
+      operationId: R105
+      summary: 'R105: Logout'
+      tags: ['M01: Authentication and User Profile']
+      responses: { '302': { description: 'Redirect' } }
+
+  /auth/google:
+    get:
+      operationId: R106
+      summary: 'R106: Google Redirect'
+      tags: ['M01: Authentication and User Profile']
+      responses: { '302': { description: 'Redirect' } }
+
+  /auth/google/callback:
+    get:
+      operationId: R107
+      summary: 'R107: Google Callback'
+      tags: ['M01: Authentication and User Profile']
+      responses: { '302': { description: 'Redirect' } }
+
+  /password/forgot:
+    get:
+      operationId: R108
+      summary: 'R108: Forgot Password View'
+      tags: ['M01: Authentication and User Profile']
+      responses: { '200': { description: 'OK' } }
+
+  /send:
+    post:
+      operationId: R109
+      summary: 'R109: Send Reset Link'
+      tags: ['M01: Authentication and User Profile']
+      responses: { '200': { description: 'OK' } }
+
+  /password/reset/{token}:
+    get:
+      operationId: R110
+      summary: 'R110: Reset Password Form'
+      tags: ['M01: Authentication and User Profile']
+      parameters: [{ name: token, in: path, required: true, schema: { type: string } }]
+      responses: { '200': { description: 'OK' } }
+
+  /password/reset:
+    post:
+      operationId: R111
+      summary: 'R111: Update Password'
+      tags: ['M01: Authentication and User Profile']
+      responses: { '302': { description: 'Redirect' } }
+
+  /profile:
+    get:
+      operationId: R112
+      summary: 'R112: Show Profile'
+      tags: ['M01: Authentication and User Profile']
+      responses: { '200': { description: 'OK' } }
+    post:
+      operationId: R113
+      summary: 'R113: Edit Profile'
+      tags: ['M01: Authentication and User Profile']
+      responses: { '200': { description: 'OK' } }
+
+  /profile/orders/{order}:
+    get:
+      operationId: R114
+      summary: 'R114: View Order Detail'
+      tags: ['M01: Authentication and User Profile']
+      parameters: [{ $ref: '#/components/parameters/orderId' }]
+      responses: { '200': { description: 'OK' } }
+
+  /profile/orders/{order}/cancel:
+    get:
+      operationId: R115
+      summary: 'R115: Cancel Order'
+      tags: ['M01: Authentication and User Profile']
+      parameters: [{ $ref: '#/components/parameters/orderId' }]
+      responses: { '302': { description: 'Redirect' } }
+
+  /notifications:
+    get:
+      operationId: R116
+      summary: 'R116: List Notifications'
+      tags: ['M01: Authentication and User Profile']
+      responses: { '200': { description: 'OK' } }
+
+  /notifications/{id}/read:
+    post:
+      operationId: R117
+      summary: 'R117: Mark Notification as Read'
+      tags: ['M01: Authentication and User Profile']
+      parameters: [{ $ref: '#/components/parameters/notificationId' }]
+      responses: { '200': { description: 'OK' } }
+
+  /notifications/mark-all-read:
+    post:
+      operationId: R118
+      summary: 'R118: Mark All Read'
+      tags: ['M01: Authentication and User Profile']
+      responses: { '200': { description: 'OK' } }
+
+  /notifications/unread-count:
+    get:
+      operationId: R119
+      summary: 'R119: Get Unread Count'
+      tags: ['M01: Authentication and User Profile']
+      responses: { '200': { description: 'OK' } }
+
+  ##### M02 - Stock Management #####
+  /products/manage:
+    get:
+      operationId: R201
+      summary: 'R201: Admin Product Management'
+      tags: ['M02: Stock Management']
+      responses: { '200': { description: 'OK' } }
+
+  /products:
+    post:
+      operationId: R202
+      summary: 'R202: Store New Product'
+      tags: ['M02: Stock Management']
+      responses: { '201': { description: 'Created' } }
+
+  /products/{product}:
+    patch:
+      operationId: R203
+      summary: 'R203: Update Product'
+      tags: ['M02: Stock Management']
+      parameters: [{ $ref: '#/components/parameters/productId' }]
+      responses: { '200': { description: 'OK' } }
+    delete:
+      operationId: R204
+      summary: 'R204: Delete Product'
+      tags: ['M02: Stock Management']
+      parameters: [{ $ref: '#/components/parameters/productId' }]
+      responses: { '204': { description: 'No Content' } }
+    get:
+      operationId: R504
+      summary: 'R504: Product Detail'
+      tags: ['M05: Administration and Static pages']
+      parameters: [{ $ref: '#/components/parameters/productId' }]
+      responses: { '200': { description: 'OK' } }
+
+  /products/{product}/stock:
+    patch:
+      operationId: R205
+      summary: 'R205: Update Stock Quantity'
+      tags: ['M02: Stock Management']
+      parameters: [{ $ref: '#/components/parameters/productId' }]
+      responses: { '200': { description: 'OK' } }
+
+  /products/{product}/json:
+    get:
+      operationId: R206
+      summary: 'R206: Get Product JSON for Edit'
+      tags: ['M02: Stock Management']
+      parameters: [{ $ref: '#/components/parameters/productId' }]
+      responses: { '200': { description: 'OK' } }
+
+  ##### M03 - Reviews and Wishlist #####
+  /wishlist:
+    get:
+      operationId: R301
+      summary: 'R301: Show Wishlist'
+      tags: ['M03: Reviews and Wishlist']
+      responses: { '200': { description: 'OK' } }
+
+  /wishlist/{product}:
+    post:
+      operationId: R302
+      summary: 'R302: Add Product to Wishlist'
+      tags: ['M03: Reviews and Wishlist']
+      parameters: [{ $ref: '#/components/parameters/productId' }]
+      responses: { '200': { description: 'OK' } }
+    delete:
+      operationId: R303
+      summary: 'R303: Remove from Wishlist'
+      tags: ['M03: Reviews and Wishlist']
+      parameters: [{ $ref: '#/components/parameters/productId' }]
+      responses: { '200': { description: 'OK' } }
+
+  /products/{product}/reviews:
+    post:
+      operationId: R304
+      summary: 'R304: Store Review'
+      tags: ['M03: Reviews and Wishlist']
+      parameters: [{ $ref: '#/components/parameters/productId' }]
+      responses: { '201': { description: 'Created' } }
+    delete:
+      operationId: R305
+      summary: 'R305: Delete Review'
+      tags: ['M03: Reviews and Wishlist']
+      parameters: [{ $ref: '#/components/parameters/productId' }]
+      responses: { '200': { description: 'OK' } }
+
+  /reviews/{review}/edit:
+    get:
+      operationId: R306
+      summary: 'R306: Edit Review Form'
+      tags: ['M03: Reviews and Wishlist']
+      parameters: [{ $ref: '#/components/parameters/reviewId' }]
+      responses: { '200': { description: 'OK' } }
+
+  /reviews/{review}:
+    put:
+      operationId: R307
+      summary: 'R307: Update Review'
+      tags: ['M03: Reviews and Wishlist']
+      parameters: [{ $ref: '#/components/parameters/reviewId' }]
+      responses: { '200': { description: 'OK' } }
+
+  ##### M04 - Shopping Cart and Checkout #####
+  /cart:
+    get:
+      operationId: R401
+      summary: 'R401: View Cart'
+      tags: ['M04: Shopping Cart and Checkout']
+      responses: { '200': { description: 'OK' } }
+
+  /cart/{productId}:
+    post:
+      operationId: R402
+      summary: 'R402: Add to Cart'
+      tags: ['M04: Shopping Cart and Checkout']
+      parameters: [{ name: productId, in: path, required: true, schema: { type: integer } }]
+      responses: { '200': { description: 'OK' } }
+    delete:
+      operationId: R403
+      summary: 'R403: Remove from Cart'
+      tags: ['M04: Shopping Cart and Checkout']
+      parameters: [{ name: productId, in: path, required: true, schema: { type: integer } }]
+      responses: { '200': { description: 'OK' } }
+    patch:
+      operationId: R404
+      summary: 'R404: Update Cart Quantity'
+      tags: ['M04: Shopping Cart and Checkout']
+      parameters: [{ name: productId, in: path, required: true, schema: { type: integer } }]
+      responses: { '200': { description: 'OK' } }
+
+  /checkout:
+    get:
+      operationId: R405
+      summary: 'R405: Checkout Page'
+      tags: ['M04: Shopping Cart and Checkout']
+      responses: { '200': { description: 'OK' } }
+    post:
+      operationId: R406
+      summary: 'R406: Process Checkout'
+      tags: ['M04: Shopping Cart and Checkout']
+      responses: { '302': { description: 'Redirect' } }
+
+  /checkout/success/{order}:
+    get:
+      operationId: R407
+      summary: 'R407: Order Success View'
+      tags: ['M04: Shopping Cart and Checkout']
+      parameters: [{ $ref: '#/components/parameters/orderId' }]
+      responses: { '200': { description: 'OK' } }
+
+  ##### M05 - Administration and Static Pages #####
+  /:
+    get:
+      operationId: R501
+      summary: 'R501: Home'
+      tags: ['M05: Administration and Static pages']
+      responses: { '200': { description: 'OK' } }
+
+  /about:
+    get:
+      operationId: R502
+      summary: 'R502: About Us'
+      tags: ['M05: Administration and Static pages']
+      responses: { '200': { description: 'OK' } }
+
+  /catalog:
+    get:
+      operationId: R503
+      summary: 'R503: Product Catalog'
+      tags: ['M05: Administration and Static pages']
+      responses: { '200': { description: 'OK' } }
+
+  /dashboard:
+    get:
+      operationId: R505
+      summary: 'R505: Main Dashboard'
+      tags: ['M05: Administration and Static pages']
+      responses: { '200': { description: 'OK' } }
+
+  /orders/manage:
+    get:
+      operationId: R506
+      summary: 'R506: Manage All Orders'
+      tags: ['M05: Administration and Static pages']
+      responses: { '200': { description: 'OK' } }
+
+  /orders/{order}:
+    get:
+      operationId: R507
+      summary: 'R507: Order Admin Details'
+      tags: ['M05: Administration and Static pages']
+      parameters: [{ $ref: '#/components/parameters/orderId' }]
+      responses: { '200': { description: 'OK' } }
+    patch:
+      operationId: R508
+      summary: 'R508: Update Order Status'
+      tags: ['M05: Administration and Static pages']
+      parameters: [{ $ref: '#/components/parameters/orderId' }]
+      responses: { '200': { description: 'OK' } }
+
+  /reports:
+    get:
+      operationId: R509
+      summary: 'R509: List Reports'
+      tags: ['M05: Administration and Static pages']
+      responses: { '200': { description: 'OK' } }
+
+  /reports/{id}:
+    get:
+      operationId: R510
+      summary: 'R510: View Single Report'
+      tags: ['M05: Administration and Static pages']
+      parameters: [{ name: id, in: path, required: true, schema: { type: integer } }]
+      responses: { '200': { description: 'OK' } }
+
+  /reports/create:
+    post:
+      operationId: R511
+      summary: 'R511: Create Report'
+      tags: ['M05: Administration and Static pages']
+      responses: { '201': { description: 'Created' } }
+
+  /reports/handle:
+    patch:
+      operationId: R512
+      summary: 'R512: Update Report Status'
+      tags: ['M05: Administration and Static pages']
+      responses: { '200': { description: 'OK' } }
+
+  /promotions:
+    get:
+      operationId: R513
+      summary: 'R513: List Promotions'
+      tags: ['M05: Administration and Static pages']
+      responses: { '200': { description: 'OK' } }
+
+  /promotions/create:
+    post:
+      operationId: R514
+      summary: 'R514: Create Promotion'
+      tags: ['M05: Administration and Static pages']
+      responses: { '201': { description: 'Created' } }
+
+  /promotions/{promo}:
+    get:
+      operationId: R515
+      summary: 'R515: Get Promo JSON'
+      tags: ['M05: Administration and Static pages']
+      parameters: [{ $ref: '#/components/parameters/promoId' }]
+      responses: { '200': { description: 'OK' } }
+    patch:
+      operationId: R516
+      summary: 'R516: Edit Promotion'
+      tags: ['M05: Administration and Static pages']
+      parameters: [{ $ref: '#/components/parameters/promoId' }]
+      responses: { '200': { description: 'OK' } }
+    delete:
+      operationId: R517
+      summary: 'R517: Delete Promotion'
+      tags: ['M05: Administration and Static pages']
+      parameters: [{ $ref: '#/components/parameters/promoId' }]
+      responses: { '204': { description: 'No Content' } }
