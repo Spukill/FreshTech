@@ -246,9 +246,10 @@ The following link leads up to a **Video Demo** regarding the product, it is onl
 
 ## ![Example Screenshot](docs/image.png)
 
-<video src="docs/lbaw2526.mp4" width="800" controls>
-  Your browser does not support the video tag.
-</video>
+## [Video Demonstration](https://github.com/user-attachments/assets/e4161bbd-4747-440b-b9fa-b67613e2a0ba
+)
+
+
 
 ## Revision history
 
@@ -265,3 +266,6 @@ GROUP2526, 22/12/2025
 * João Rodrigues Alberton Júnior, up2023067219
 * Tiago Mota Cunha, up202305564 (editor)
 * Vasco Miguel Fidalgo Martins Gonçalves, up202305513
+
+
+
