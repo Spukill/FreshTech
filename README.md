@@ -244,7 +244,7 @@ The system covers all of the shop’s operations: searching and browsing product
 
 The following link leads up to a **Video Demo** regarding the product, it is only composed by quick clips of various functionalities and a **text context** bellow that gives a quick explanation on the current screen being displayed
 
-## ![Example Screenshot](uploads/2f8d09313431bb1221f849475f048e0a/image.png){width="900" height="503"} ![Video Demo Presentation](uploads/d425bd93cd85d6fb16fc7674781c6764/lbaw2526.mp4){width="900" height="507"}
+## ![Example Screenshot](docs/image.png){width="900" height="503"} ![Video Demo Presentation](docs/lbaw2526.mp4){width="900" height="507"}
 
 ## Revision history
 
