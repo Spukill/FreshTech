@@ -1,6 +1,24 @@
 # PA: Product and Presentation
 
-## A9: Product
+## Presentation
+
+### 1. Product presentation
+
+FreshTech is an online shop for customers who seek a reliable and convenient way to purchase tech products. The main goal of this project is the development of a web-based store that enables the management and sale of tech products.
+
+The system covers all of the shop’s operations: searching and browsing products and categories, a big catalog of items with several filters to help user search, managing a shopping cart and wishlist, tracking orders, viewing purchase history, profile editing and leaving product reviews. Not only this but to ensure client loyalty we have implemented a XP/Level design so that the more purchases a customer makes the best promotions they get. Our system also has built-in administrative features such as: managing categories, promotions and client's orders status.
+
+### 2. Video presentation
+
+The following link leads up to a **Video Demo** regarding the product, it is only composed by quick clips of various functionalities and a **text context** bellow that gives a quick explanation on the current screen being displayed
+
+## ![Example Screenshot](docs/image.png)
+
+### Video Demonstration
+
+https://github.com/user-attachments/assets/e4161bbd-4747-440b-b9fa-b67613e2a0ba
+
+## Product
 
 The final version of FreshTech is the result of the implementation of the all the previous stages (A1 to A7) we have done during the semester. It uses PHP and Laravel to create dynamic web pages, AJAX for better UX and PostgreSQL for the database.
 
@@ -231,26 +249,6 @@ Many others that were expected such as Bootstrap for the styling (found in any v
 | US27 | Manage Reports | M05: Administration & Static Pages | Low | **Vasco Gonçalves** | 100% |
 
 ---
-
-## A10: Presentation
-
-### 1. Product presentation
-
-FreshTech is an online shop for customers who seek a reliable and convenient way to purchase tech products. The main goal of this project is the development of a web-based store that enables the management and sale of tech products.
-
-The system covers all of the shop’s operations: searching and browsing products and categories, a big catalog of items with several filters to help user search, managing a shopping cart and wishlist, tracking orders, viewing purchase history, profile editing and leaving product reviews. Not only this but to ensure client loyalty we have implemented a XP/Level design so that the more purchases a customer makes the best promotions they get. Our system also has built-in administrative features such as: managing categories, promotions and client's orders status.
-
-### 2. Video presentation
-
-The following link leads up to a **Video Demo** regarding the product, it is only composed by quick clips of various functionalities and a **text context** bellow that gives a quick explanation on the current screen being displayed
-
-## ![Example Screenshot](docs/image.png)
-
-### Video Demonstration
-
-https://github.com/user-attachments/assets/e4161bbd-4747-440b-b9fa-b67613e2a0ba
-
-
 
 ## Revision history
 
